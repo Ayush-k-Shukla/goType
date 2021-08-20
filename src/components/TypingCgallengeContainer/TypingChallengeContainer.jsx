@@ -7,6 +7,7 @@ function TypingChallengeContainer({
   selectedParagraph,
   words,
   wpm,
+  testInfo,
   characters,
   timerStarted,
   timeReamaining,
@@ -26,6 +27,7 @@ function TypingChallengeContainer({
       {/* The Real challenge section */}
       <div className="typewriter-container">
         <TypingChallenge
+          testInfo={testInfo}
           timeReamaining={timeReamaining}
           timerStarted={timerStarted}
           selectedParagraph={selectedParagraph}

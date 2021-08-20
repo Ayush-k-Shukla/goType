@@ -9,6 +9,7 @@ const ChanllengeSection = ({
   characters,
   timerStarted,
   timeReamaining,
+  testInfo,
 }) => {
   // console.log();
   return (
@@ -17,6 +18,7 @@ const ChanllengeSection = ({
         Take a test now
       </h1>
       <TestContainer
+        testInfo={testInfo}
         selectedParagraph={selectedParagraph}
         timeReamaining={timeReamaining}
         timerStarted={timerStarted}

@@ -7,6 +7,7 @@ const TestContainer = ({
   selectedParagraph,
   words,
   wpm,
+  testInfo,
   characters,
   timerStarted,
   timeReamaining,
@@ -24,6 +25,7 @@ const TestContainer = ({
             words={words}
             characters={characters}
             wpm={wpm}
+            testInfo={testInfo}
           />
         </div>
       ) : (

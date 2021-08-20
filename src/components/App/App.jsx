@@ -16,6 +16,7 @@ export default class App extends Component {
     words: 0,
     characters: 0,
     wpm: 0,
+    testInfo: [],
   };
 
   componentDidMount() {
@@ -25,10 +26,22 @@ export default class App extends Component {
     //     // console.log("response is: " + info);
     //   })
     // );
+    const selectedParagraphArray = this.state.selectedParagraph.split("");
+    console.log("arrat: " + selectedParagraphArray);
+    const testInfo = selectedParagraphArray.map((sletter) => {
+      return {
+        testLetter: sletter,
+        status: "notAttempted",
+      };
+    });
+    this.setState({ testInfo: testInfo });
   }
 
+  handleUserInput = (inputValue) => {
+    console.log(inputValue);
+  };
   render() {
-    // console.log("rendering...");
+    // console.log(this.state.testInfo);
     return (
       <div className="app">
         {/* nav Section */}
@@ -43,8 +56,10 @@ export default class App extends Component {
           words={this.state.words}
           characters={this.state.characters}
           wpm={this.state.wpm}
+          testInfo={this.state.testInfo}
           timerStarted={this.state.timerStarted}
           timeReamaining={this.state.timeReamaining}
+          onInputChange={this.state.handleUserInput}
         />
 
         {/* footer components */}
