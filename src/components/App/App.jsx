@@ -4,6 +4,7 @@ import Landing from "../Landing/Landing";
 import Footer from "../Footer/Footer";
 import "./App.css";
 import ChanllengeSection from "../ChallengeSection/ChanllengeSection";
+import { SAMPLE_PARAGRAPHS } from "../../data/sampleParagraphs";
 
 const totalTime = 60;
 const serviceUrl = "http://metaphorpsum.com/paragraphs/1/11";
@@ -19,6 +20,25 @@ const defaultState = {
 
 export default class App extends Component {
   state = defaultState;
+
+  fetchParagraphFallback = () => {
+    const info =
+      SAMPLE_PARAGRAPHS[Math.floor(Math.random() * SAMPLE_PARAGRAPHS.length)];
+    const selectedParagraphArray = info.split("");
+    console.log("arrat: " + selectedParagraphArray);
+    const testInfo = selectedParagraphArray.map((sletter) => {
+      return {
+        testLetter: sletter,
+        status: "notAttempted",
+      };
+    });
+    this.setState({
+      ...defaultState,
+      testInfo: testInfo,
+      selectedParagraph: info,
+    });
+  };
+
   fetchParagraph = () => {
     fetch(serviceUrl).then((res) =>
       res.text().then((info) => {
@@ -40,7 +60,7 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    this.fetchParagraph();
+    this.fetchParagraphFallback();
   }
 
   startTimer = () => {
@@ -62,7 +82,7 @@ export default class App extends Component {
   };
 
   startAgain = () => {
-    this.fetchParagraph();
+    this.fetchParagraphFallback();
   };
 
   handleUserInput = (inputValue) => {
