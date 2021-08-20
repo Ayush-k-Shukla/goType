@@ -11,6 +11,7 @@ const ChanllengeSection = ({
   timeReamaining,
   testInfo,
   onInputChange,
+  startAgain,
 }) => {
   // console.log();
   return (
@@ -27,6 +28,7 @@ const ChanllengeSection = ({
         wpm={wpm}
         characters={characters}
         onInputChange={onInputChange}
+        startAgain={startAgain}
       />
     </div>
   );

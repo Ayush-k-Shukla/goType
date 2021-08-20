@@ -7,19 +7,19 @@ import ChanllengeSection from "../ChallengeSection/ChanllengeSection";
 
 const totalTime = 60;
 const serviceUrl = "http://metaphorpsum.com/paragraphs/1/11";
+const defaultState = {
+  selectedParagraph: "",
+  timerStarted: false,
+  timeReamaining: totalTime,
+  words: 0,
+  characters: 0,
+  wpm: 0,
+  testInfo: [],
+};
 
 export default class App extends Component {
-  state = {
-    selectedParagraph: "",
-    timerStarted: false,
-    timeReamaining: totalTime,
-    words: 0,
-    characters: 0,
-    wpm: 0,
-    testInfo: [],
-  };
-
-  componentDidMount() {
+  state = defaultState;
+  fetchParagraph = () => {
     fetch(serviceUrl).then((res) =>
       res.text().then((info) => {
         const selectedParagraphArray = info.split("");
@@ -30,9 +30,17 @@ export default class App extends Component {
             status: "notAttempted",
           };
         });
-        this.setState({ testInfo: testInfo });
+        this.setState({
+          ...defaultState,
+          testInfo: testInfo,
+          selectedParagraph: info,
+        });
       })
     );
+  };
+
+  componentDidMount() {
+    this.fetchParagraph();
   }
 
   startTimer = () => {
@@ -52,6 +60,11 @@ export default class App extends Component {
       }
     }, 1000);
   };
+
+  startAgain = () => {
+    this.fetchParagraph();
+  };
+
   handleUserInput = (inputValue) => {
     if (!this.state.timerStarted) {
       this.startTimer();
@@ -100,13 +113,8 @@ export default class App extends Component {
     // console.log(this.state.testInfo);
     return (
       <div className="app">
-        {/* nav Section */}
         <Navbar />
-
-        {/* landing page */}
         <Landing />
-
-        {/* challenge section*/}
         <ChanllengeSection
           selectedParagraph={this.state.selectedParagraph}
           words={this.state.words}
@@ -116,6 +124,7 @@ export default class App extends Component {
           timerStarted={this.state.timerStarted}
           timeReamaining={this.state.timeReamaining}
           onInputChange={this.handleUserInput}
+          startAgain={this.startAgain}
         />
 
         {/* footer components */}

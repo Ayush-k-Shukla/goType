@@ -1,28 +1,35 @@
 import React from "react";
 import "./TryAgain.css";
 
-function TryAgain({ words, characters, wpm }) {
+function TryAgain({ words, characters, wpm, startAgain }) {
   return (
     <div>
       <div className="try-again-container">
         <h1>Test Results :</h1>
         <div className="result-container">
           <p>
-            <b>characters</b>
+            <b>characters: </b>
             {characters}
           </p>
           <p>
-            <b>words</b>
+            <b>words: </b>
             {words}
           </p>
           <p>
-            <b>wpm</b>
+            <b>wpm: </b>
             {wpm}
           </p>
         </div>
 
         <div>
-          <button className="end-buttons start-again-btn">Re-Try</button>
+          <button
+            onClick={() => {
+              startAgain();
+            }}
+            className="end-buttons start-again-btn"
+          >
+            Re-Try
+          </button>
           <button
             onClick={() => {
               window.open(

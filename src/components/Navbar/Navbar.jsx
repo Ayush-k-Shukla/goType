@@ -10,9 +10,9 @@ export default function Navbar() {
         <p className="flash-logo-text">goType</p>
       </div>
       <div className="nav-right">
-        <a target="_blank" rel="noteferrer" className="nav-link" href="">
+        {/* <a target="_blank" rel="noteferrer" className="nav-link" href="">
           Lik
-        </a>
+        </a> */}
       </div>
     </div>
   );

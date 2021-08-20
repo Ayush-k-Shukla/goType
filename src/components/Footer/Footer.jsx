@@ -4,9 +4,9 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <div className="footer-container">
-      <a href="" className="footer-link" target="_blank" rel="noreferrer">
+      {/* <a href="" className="footer-link" target="_blank" rel="noreferrer">
         footer link
-      </a>
+      </a> */}
     </div>
   );
 };

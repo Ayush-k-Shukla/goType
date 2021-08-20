@@ -38,6 +38,10 @@ const TypingChallenge = ({
         </div>
         <div className="textarea-right">
           <textarea
+            onPaste={(e) => {
+              e.preventDefault();
+              return false;
+            }}
             onChange={(e) => onInputChange(e.target.value)}
             className="textarea"
             placeholder="start typing ..."
