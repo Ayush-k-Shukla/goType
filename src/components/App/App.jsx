@@ -17,6 +17,20 @@ const defaultState = {
   wpm: 0,
   testInfo: [],
 };
+document.onkeydown = function (e) {
+  if (
+    e.ctrlKey &&
+    (e.keyCode === 67 ||
+      e.keyCode === 86 ||
+      e.keyCode === 85 ||
+      e.keyCode === 117)
+  ) {
+    alert("not allowed");
+    return false;
+  } else {
+    return true;
+  }
+};
 
 export default class App extends Component {
   state = defaultState;
@@ -120,7 +134,7 @@ export default class App extends Component {
       testInfo[index + 1].status = "notAttempted";
 
     //correct typed letters
-    const isCorrect = inputValue[index] === testInfo[index.testLetter];
+    const isCorrect = inputValue[index] === testInfo[index].testLetter;
     testInfo[index].status = isCorrect ? "correct" : "incorrect";
     this.setState({
       testInfo,
